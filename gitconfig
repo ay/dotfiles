@@ -1,0 +1,35 @@
+[user]
+	name = Alex Yakoubian
+	email = alex@alexyakoubian.com
+
+[color]
+	ui = true
+
+[alias]
+	l = log
+	lp = log --graph --pretty=format:'%C(yellow)%h%Creset%Cred%d%Creset %Cgreen%s%Creset %Cblue(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	s = status
+	c = commit
+	amend = commit --amend
+	co = checkout
+	br = branch
+	d = diff
+	dc = diff --cached
+	cp = cherry-pick
+	sign = commit --amend -CHEAD --gpg-sign
+
+[push]
+	default = upstream
+
+[branch]
+	autosetuprebase = always
+
+[core]
+	excludesfile = ~/.gitignore
+
+[diff]
+	renames = copies
+	mnemonicprefix = true
+
+[rerere]
+	enabled = true
