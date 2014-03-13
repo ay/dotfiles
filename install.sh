@@ -78,3 +78,6 @@ if command -v vim > /dev/null ; then
         vim +BundleInstall +qall
     fi
 fi
+
+green "All done!"
+exec $SHELL
