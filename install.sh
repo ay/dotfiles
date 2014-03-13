@@ -57,13 +57,6 @@ function ask {
     fi
 }
 
-if ! git config --get-regexp submodule* > /dev/null; then
-    if ask "Initialize submodules?"; then
-        git submodule init
-        git submodule update
-    fi
-fi
-
 install_dot "bash_profile"
 install_dot "bashrc"
 install_dot "vimrc"
@@ -72,6 +65,13 @@ install_dot "gitconfig"
 install_dot "gitignore"
 install_dot "tmux.conf"
 install_dot "gemrc"
+
+if ! git config --get-regexp submodule* > /dev/null; then
+    if ask "Initialize submodules?"; then
+        git submodule init
+        git submodule update
+    fi
+fi
 
 if command -v vim > /dev/null ; then
     if ask "Install Vundle for Vim?"; then
