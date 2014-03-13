@@ -97,7 +97,7 @@ filetype plugin indent on
 set t_Co=256                       " 256 colors
 syntax enable                      " Enable syntax highlighting
 set background=dark                " Set a dark background
-colorscheme solarized              " Use solarized color scheme
+silent! colorscheme solarized      " Use solarized color scheme
 
 " Quickly find and remove trailing whitespace with ,s
 function! StripWhitespace ()
