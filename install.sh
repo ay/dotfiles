@@ -37,7 +37,7 @@ install () {
         if [ "$?" == 0 -a \( "$link" == "$from_" -o "$link" == "$from_/" \) ]; then
             green "Link ~/$to => $from already exists!"
         else
-            if ask "~/$to already exists. Would you like to replace it?"; then
+            if ask "~/$to already exists. Would you like to replace it"; then
                 mv "$to_" "${to_}.old"
                 link "$from_" "$to_"
             else
@@ -76,14 +76,14 @@ install_dot "tmux.conf"
 install_dot "gemrc"
 
 if ! git config --get-regexp submodule* > /dev/null; then
-    if ask "Initialize submodules?"; then
+    if ask "Initialize submodules"; then
         git submodule init
         git submodule update
     fi
 fi
 
 if command -v vim > /dev/null ; then
-    if ask "Install Vundle for Vim?"; then
+    if ask "Install Vundle for Vim"; then
         vim +BundleInstall +qall
     fi
 else
