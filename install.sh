@@ -45,9 +45,9 @@ install_dot () {
 ask () {
     local question="$1" default_y="$2" yn
     if [ -z "$default_y" ]; then
-        read -p "$question (y/N)? "
+        read -p "$question [y/N]? "
     else
-        read -p "$question (Y/n)? "
+        read -p "$question [Y/n]? "
     fi
     yn=$(echo "$REPLY" | tr "A-Z" "a-z")
     if [ -z "$default_y" ]; then
