@@ -38,6 +38,7 @@ install () {
             green "Link ~/$to => $from already exists!"
         else
             if ask "~/$to already exists. Would you like to replace it"; then
+                yellow "Moving ~/$to to ~/${to}.old"
                 mv "$to_" "${to_}.old"
                 link "$from_" "$to_"
             else
