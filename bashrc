@@ -135,14 +135,11 @@ else
     P=" \$"
 fi
 
-# Sets the window title
-TITLE="\[\033]0;\u@\h: \w\007\]"
-
 # Don't show hostname in prompt if the terminal is local
 if [ -z "$TERM_PROGRAM" ]; then
-    PS1="${COLOR1}\u${BASE0}@${COLOR2}\h${BASE0}:${COLOR3}\w${CYAN}\$(_parse_git_branch)${COLOR4}$P${RESET} ${TITLE}"
+    PS1="${COLOR1}\u${BASE0}@${COLOR2}\h${BASE0}:${COLOR3}\w${CYAN}\$(_parse_git_branch)${COLOR4}$P${RESET} "
 else
-    PS1="${COLOR3}\w${CYAN}\$(_parse_git_branch)${COLOR4}$P${RESET} ${TITLE}"
+    PS1="${COLOR3}\w${CYAN}\$(_parse_git_branch)${COLOR4}$P${RESET} "
 fi
 PS2="> "
 
