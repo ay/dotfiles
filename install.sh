@@ -92,4 +92,3 @@ else
 fi
 
 green "All done!"
-exec $SHELL
