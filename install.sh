@@ -10,12 +10,12 @@ yellow () { printf "\033[33m$1\033[0m\n"; }
 red () { printf "\033[31m$1\033[0m\n"; }
 
 link () {
-    local from="$1" to="$2"
-    yellow "Linking $to => $from"
-    if [ -d "$from" ]; then
-        ln -s "$from/" "$to"
+    local from="$1" to="$2" from_="$ROOT/$1" to_="$HOME/$2"
+    yellow "Linking ~/$to => $from"
+    if [ -d "$from_" ]; then
+        ln -s "$from_/" "$to_"
     else
-        ln -s "$from" "$to"
+        ln -s "$from_" "$to_"
     fi
 }
 
@@ -30,7 +30,7 @@ install () {
     fi
 
     if [ ! -e "$to_" ]; then
-        link "$from_" "$to_"
+        link "$from" "$to"
     else
         local link
         link=$(readlink "$to_")
@@ -40,7 +40,7 @@ install () {
             if ask "~/$to already exists. Would you like to replace it"; then
                 yellow "Moving ~/$to to ~/${to}.old"
                 mv "$to_" "${to_}.old"
-                link "$from_" "$to_"
+                link "$from" "$to"
             else
                 red "Error linking ~/$to to $from: $to already exists!"
             fi
