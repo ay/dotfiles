@@ -5,13 +5,13 @@
 
 ROOT=$(cd "$(dirname "$0")" && pwd)
 
-function green { printf "\033[32m$1\033[0m\n"; }
-function yellow { printf "\033[33m$1\033[0m\n"; }
-function red { printf "\033[31m$1\033[0m\n"; }
+green () { printf "\033[32m$1\033[0m\n"; }
+yellow () { printf "\033[33m$1\033[0m\n"; }
+red () { printf "\033[31m$1\033[0m\n"; }
 
 # Install a file or directory to a given path by symlinking it, printing nice
 # things along the way.
-function install {
+install () {
     local from="$1" to="$2" from_="$ROOT/$1" to_="$HOME/$2"
 
     if [ ! -e "$from_" ]; then
@@ -38,11 +38,11 @@ function install {
     fi
 }
 
-function install_dot {
+install_dot () {
     install "$1" ".$1"
 }
 
-function ask {
+ask () {
     local question="$1" default_y="$2" yn
     if [ -z "$default_y" ]; then
         read -p "$question (y/N)? "
