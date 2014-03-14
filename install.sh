@@ -9,6 +9,16 @@ green () { printf "\033[32m$1\033[0m\n"; }
 yellow () { printf "\033[33m$1\033[0m\n"; }
 red () { printf "\033[31m$1\033[0m\n"; }
 
+link () {
+    local from="$1" to="$2"
+    yellow "Linking $to => $from"
+    if [ -d "$from" ]; then
+        ln -s "$from/" "$to"
+    else
+        ln -s "$from" "$to"
+    fi
+}
+
 # Install a file or directory to a given path by symlinking it, printing nice
 # things along the way.
 install () {
@@ -20,20 +30,19 @@ install () {
     fi
 
     if [ ! -e "$to_" ]; then
-        yellow "Linking ~/$to => $from"
-
-        if [ -d "$from_" ]; then
-            ln -s "$from_/" "$to_"
-        else
-            ln -s "$from_" "$to_"
-        fi
+        link "$from_" "$to_"
     else
         local link
         link=$(readlink "$to_")
         if [ "$?" == 0 -a \( "$link" == "$from_" -o "$link" == "$from_/" \) ]; then
             green "Link ~/$to => $from already exists!"
         else
-            red "Error linking ~/$to to $from: $to already exists!"
+            if ask "~/$to already exists. Would you like to replace it?"; then
+                mv "$to_" "${to_}.old"
+                link "$from_" "$to_"
+            else
+                red "Error linking ~/$to to $from: $to already exists!"
+            fi
         fi
     fi
 }
