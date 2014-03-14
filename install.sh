@@ -63,7 +63,7 @@ ask () {
     if [ -z "$default_y" ]; then
         test "$yn" == 'y' -o "$yn" == 'yes'
     else
-        test "$yn" == 'n' -o "$yn" == 'no'
+        test "$yn" != 'n' -a "$yn" != 'no'
     fi
 }
 
@@ -77,14 +77,14 @@ install_dot "tmux.conf"
 install_dot "gemrc"
 
 if ! git config --get-regexp submodule* > /dev/null; then
-    if ask "Initialize submodules"; then
+    if ask "Initialize submodules" "Y"; then
         git submodule init
         git submodule update
     fi
 fi
 
 if command -v vim > /dev/null ; then
-    if ask "Install Vundle for Vim"; then
+    if ask "Install Vundle for Vim" "Y"; then
         vim +BundleInstall +qall
     fi
 else
