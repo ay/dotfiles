@@ -91,4 +91,23 @@ else
     red "Error installing Vundle: Vim is not installed!"
 fi
 
-green "All done!"
+green "All done! You might still have to do some stuff for everything to work properly:
+
+    - Install a Powerline-patched font on your system and set it as the font
+      on your terminal emulator. This is needed to work with vim-airline.
+
+    - Install Ag (the_silver_searcher) so :Ag works in Vim.
+
+    - It's probably a good idea to change your terminal emulator's color
+      scheme to Solarized Dark (http://ethanschoonover.com/solarized)
+
+    - If this is a workstation, generate (or import) an SSH keypair with
+      \`ssh-keygen -t rsa -b 4096 -C alex@$(hostname)\`
+
+    - If you're going to be SSHing into this machine, copy the public keys of
+      all authorized users to ~/.ssh/authorized_keys
+
+    - If you manually created ~/.ssh, make sure you chmod it to 700
+
+    - If you plan on signing Git commits with your GPG key, be sure to install
+      GPG and import your keys\n"
