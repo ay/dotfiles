@@ -44,47 +44,56 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
+# terminfo/termcap compatibility
+TERM_COLORS="$( { tput Co || tput colors ; } 2>/dev/null )"
+if tput setaf 0 >/dev/null 2>&1 ; then
+    # GNU/Linux and OS X
+    term_setaf () { tput setaf "$1" ; }
+elif tput AF 0 >/dev/null 2>&1 ; then
+    # FreeBSD
+    term_setaf () { tput AF "$1" ; }
+fi
+
 # Initialize colors from Solarized color scheme. Color names and values from
 # http://ethanschoonover.com/solarized#the-values
-if tput setaf 1 &> /dev/null; then
-    tput sgr0
-    if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-      BASE03="\[$(tput setaf 234)\]"
-      BASE02="\[$(tput setaf 235)\]"
-      BASE01="\[$(tput setaf 240)\]"
-      BASE00="\[$(tput setaf 241)\]"
-      BASE0="\[$(tput setaf 244)\]"
-      BASE1="\[$(tput setaf 245)\]"
-      BASE2="\[$(tput setaf 254)\]"
-      BASE3="\[$(tput setaf 230)\]"
-      YELLOW="\[$(tput setaf 136)\]"
-      ORANGE="\[$(tput setaf 166)\]"
-      RED="\[$(tput setaf 160)\]"
-      MAGENTA="\[$(tput setaf 125)\]"
-      VIOLET="\[$(tput setaf 61)\]"
-      BLUE="\[$(tput setaf 33)\]"
-      CYAN="\[$(tput setaf 37)\]"
-      GREEN="\[$(tput setaf 64)\]"
+if declare -F term_setaf &>/dev/null; then
+    if [[ $TERM_COLORS -ge 256 ]]; then
+        BASE03="\[$(term_setaf 234)\]"
+        BASE02="\[$(term_setaf 235)\]"
+        BASE01="\[$(term_setaf 240)\]"
+        BASE00="\[$(term_setaf 241)\]"
+        BASE0="\[$(term_setaf 244)\]"
+        BASE1="\[$(term_setaf 245)\]"
+        BASE2="\[$(term_setaf 254)\]"
+        BASE3="\[$(term_setaf 230)\]"
+        YELLOW="\[$(term_setaf 136)\]"
+        ORANGE="\[$(term_setaf 166)\]"
+        RED="\[$(term_setaf 160)\]"
+        MAGENTA="\[$(term_setaf 125)\]"
+        VIOLET="\[$(term_setaf 61)\]"
+        BLUE="\[$(term_setaf 33)\]"
+        CYAN="\[$(term_setaf 37)\]"
+        GREEN="\[$(term_setaf 64)\]"
     else
-      BASE03="\[$(tput setaf 8)\]"
-      BASE02="\[$(tput setaf 0)\]"
-      BASE01="\[$(tput setaf 10)\]"
-      BASE00="\[$(tput setaf 11)\]"
-      BASE0="\[$(tput setaf 12)\]"
-      BASE1="\[$(tput setaf 14)\]"
-      BASE2="\[$(tput setaf 7)\]"
-      BASE3="\[$(tput setaf 15)\]"
-      YELLOW="\[$(tput setaf 3)\]"
-      ORANGE="\[$(tput setaf 9)\]"
-      RED="\[$(tput setaf 1)\]"
-      MAGENTA="\[$(tput setaf 5)\]"
-      VIOLET="\[$(tput setaf 13)\]"
-      BLUE="\[$(tput setaf 4)\]"
-      CYAN="\[$(tput setaf 6)\]"
-      GREEN="\[$(tput setaf 2)\]"
+        BASE03="\[$(term_setaf 8)\]"
+        BASE02="\[$(term_setaf 0)\]"
+        BASE01="\[$(term_setaf 10)\]"
+        BASE00="\[$(term_setaf 11)\]"
+        BASE0="\[$(term_setaf 12)\]"
+        BASE1="\[$(term_setaf 14)\]"
+        BASE2="\[$(term_setaf 7)\]"
+        BASE3="\[$(term_setaf 15)\]"
+        YELLOW="\[$(term_setaf 3)\]"
+        ORANGE="\[$(term_setaf 9)\]"
+        RED="\[$(term_setaf 1)\]"
+        MAGENTA="\[$(term_setaf 5)\]"
+        VIOLET="\[$(term_setaf 13)\]"
+        BLUE="\[$(term_setaf 4)\]"
+        CYAN="\[$(term_setaf 6)\]"
+        GREEN="\[$(term_setaf 2)\]"
     fi
-    BOLD="\[$(tput bold)\]"
-    RESET="\[$(tput sgr0)\]"
+    BOLD="$( { tput bold || tput md ; } 2>/dev/null )"
+    RESET="$( { tput sgr0 || tput me ; } 2>/dev/null )"
 else
     BASE03="\[\033[0;90m\]"
     BASE02="\[\033[0;30m\]"
