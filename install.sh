@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Much taken from Carl Jackson's install.sh:
 # https://github.com/zenazn/dotfiles/blob/master/install.sh
