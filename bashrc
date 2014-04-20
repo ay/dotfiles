@@ -35,14 +35,16 @@ fi
 # Colors on GNU and BSD versions of ls
 if ls --color > /dev/null 2>&1; then # GNU ls
     alias ls="ls --color=auto"
-else # BSD ls
+elif ls -G > /dev/null 2>&1; then  # BSD ls (except OpenBSD)
     alias ls="ls -G"
 fi
 
 # Colorful grep
-alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
+if grep --color "a" <<< "a" > /dev/null 2>&1; then
+    alias grep="grep --color=auto"
+    alias fgrep="fgrep --color=auto"
+    alias egrep="egrep --color=auto"
+fi
 
 # terminfo/termcap compatibility
 TERM_COLORS="$( { tput Co || tput colors ; } 2>/dev/null )"
