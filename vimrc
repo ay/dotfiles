@@ -45,8 +45,6 @@ set autoread                       " Reload file if changed outside of Vim
 set nofoldenable                   " No folding
 set splitbelow                     " Open new horizontal split pane on the bottom
 set splitright                     " Open new vertical split pane to the right
-set textwidth=78                   " Wrap text after 78 characters
-set formatoptions=cql              " Auto-wrap new comments and existing ones with gq
 
 " Indentation
 set autoindent                     " Copy indent from current line onto new line
