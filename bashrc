@@ -166,7 +166,7 @@ alias la="ls -hla"
 alias private="HISTFILE=/dev/null"
 
 # Print public IP
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Git
 alias g="git"
