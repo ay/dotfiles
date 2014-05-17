@@ -94,8 +94,8 @@ if declare -F term_setaf &>/dev/null; then
         CYAN="\[$(term_setaf 6)\]"
         GREEN="\[$(term_setaf 2)\]"
     fi
-    BOLD="$( { tput bold || tput md ; } 2>/dev/null )"
-    RESET="$( { tput sgr0 || tput me ; } 2>/dev/null )"
+    BOLD="\[$( { tput bold || tput md ; } 2>/dev/null )\]"
+    RESET="\[$( { tput sgr0 || tput me ; } 2>/dev/null )\]"
 else
     BASE03="\[\033[0;90m\]"
     BASE02="\[\033[0;30m\]"
