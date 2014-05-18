@@ -7,7 +7,7 @@
 # present in PATH, albeit after /usr/bin. So, the best solution without messing
 # with /etc/profile is to clear out PATH and re-source /etc/profile so that
 # rbenv can later still prepend its paths into PATH.
-if [ -f /etc/profile ]; then
+if [ "$(uname)" == "Darwin" -a -f /etc/profile ]; then
     PATH=""
     source /etc/profile
 fi
