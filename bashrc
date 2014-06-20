@@ -180,6 +180,31 @@ alias gl="git lp"
 alias be="bundle exec"
 
 # ----------------------------------------------------------------------
+# Functions
+# ----------------------------------------------------------------------
+
+path_push () {
+    [ -d "$1" ] && PATH="${PATH/":$1"}:$1"
+}
+
+path_unshift () {
+    [ -d "$1" ] && PATH="$1:${PATH/"$1:"}"
+}
+
+# ----------------------------------------------------------------------
+# Paths
+# ----------------------------------------------------------------------
+
+# Homebrew
+path_unshift "$HOME/.homebrew/bin"
+
+# Heroku
+path_unshift "$HOME/.local/heroku/bin"
+
+# I like installing everything in ~/.local instead of /usr/local
+path_unshift "$HOME/.local/bin"
+
+# ----------------------------------------------------------------------
 # Bash completion
 # ----------------------------------------------------------------------
 
@@ -200,18 +225,6 @@ for completion in "/etc/bash_completion" "/usr/local/etc/bash_completion"; do
 done
 
 # ----------------------------------------------------------------------
-# Functions
-# ----------------------------------------------------------------------
-
-path_push () {
-    [ -d "$1" ] && PATH="${PATH/":$1"}:$1"
-}
-
-path_unshift () {
-    [ -d "$1" ] && PATH="$1:${PATH/"$1:"}"
-}
-
-# ----------------------------------------------------------------------
 # Editor and Pager
 # ----------------------------------------------------------------------
 
@@ -221,19 +234,6 @@ if command -v vim > /dev/null ; then
 fi
 
 export PAGER="less -FiRS"
-
-# ----------------------------------------------------------------------
-# Paths
-# ----------------------------------------------------------------------
-
-# Homebrew
-path_unshift "$HOME/.homebrew/bin"
-
-# Heroku
-path_unshift "$HOME/.local/heroku/bin"
-
-# I like installing everything in ~/.local instead of /usr/local
-path_unshift "$HOME/.local/bin"
 
 # ----------------------------------------------------------------------
 # Go Environment
