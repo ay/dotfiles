@@ -227,9 +227,7 @@ export PAGER="less -FiRS"
 # ----------------------------------------------------------------------
 
 # Homebrew
-if command -v brew > /dev/null ; then
-    path_unshift "$(brew --prefix)/bin"
-fi
+path_unshift "$HOME/.homebrew/bin"
 
 # Heroku
 path_unshift "$HOME/.local/heroku/bin"
