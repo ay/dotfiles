@@ -62,11 +62,6 @@ set ignorecase                     " Ignore case while searching
 set incsearch                      " Highlight matches as you type
 set smartcase                      " Override ignorecase if search contains uppercase
 
-" Load vim-related files included with Go
-if isdirectory($GOROOT)
-	set runtimepath+=$GOROOT/misc/vim
-endif
-
 " Initialize Vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -74,6 +69,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Language plugins
+Bundle 'fatih/vim-go'
 Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mustache/vim-mustache-handlebars'
