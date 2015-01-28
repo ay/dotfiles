@@ -64,27 +64,28 @@ set smartcase                      " Override ignorecase if search contains uppe
 
 " Initialize Vundle
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 
 " Language plugins
-Bundle 'fatih/vim-go'
-Bundle 'elzr/vim-json'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'tpope/vim-markdown'
+Plugin 'fatih/vim-go'
+Plugin 'elzr/vim-json'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'tpope/vim-markdown'
 
 " Other plugins
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-fugitive'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-rails'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rking/ag.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-rails'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rking/ag.vim'
 
+call vundle#end()
 filetype plugin indent on
 
 " Colors

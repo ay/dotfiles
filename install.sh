@@ -85,7 +85,7 @@ fi
 
 if command -v vim > /dev/null ; then
     if _ask "Install Vundle for Vim" "Y"; then
-        vim +BundleInstall +qall
+        vim +PluginInstall +qall
     fi
 else
     _red "Error installing Vundle: Vim is not installed!"
