@@ -76,6 +76,17 @@ _install_dot "gitignore"
 _install_dot "tmux.conf"
 _install_dot "gemrc"
 
+mkdir -p "$HOME/.profile.d"
+_install_dot "profile.d/01-path.sh"
+_install_dot "profile.d/10-completion.sh"
+_install_dot "profile.d/20-aliases.sh"
+_install_dot "profile.d/30-go.sh"
+_install_dot "profile.d/30-java.sh"
+_install_dot "profile.d/30-nvm.sh"
+_install_dot "profile.d/30-pyenv.sh"
+_install_dot "profile.d/30-rbenv.sh"
+_install_dot "profile.d/30-scheme.sh"
+
 if ! git config --get-regexp submodule* > /dev/null; then
     if _ask "Initialize submodules" "Y"; then
         git submodule init

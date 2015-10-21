@@ -14,6 +14,9 @@ shopt -s checkwinsize
 # Save a limited history
 export HISTSIZE=500
 
+# Don't save history if command starts with a space
+export HISTCONTROL="ignorespace"
+
 # Default umask: u=rwx,g=rx,o=rx
 umask 0022
 
@@ -153,78 +156,6 @@ fi
 PS2="> "
 
 # ----------------------------------------------------------------------
-# Aliases
-# ----------------------------------------------------------------------
-
-# Easier navigation
-alias ..="cd .."
-alias ll="ls -hlF"
-alias l.="ls -hlF -d .*"
-alias la="ls -hla"
-
-# Leave current session out of .bash_history
-alias private="HISTFILE=/dev/null"
-
-# Print public IP
-alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-# Git
-alias g="git"
-alias gs="git status"
-alias gc="git commit"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias gl="git lp"
-
-# Ruby
-alias be="bundle exec"
-
-# ----------------------------------------------------------------------
-# Functions
-# ----------------------------------------------------------------------
-
-path_push () {
-    [ -d "$1" ] && PATH="${PATH/":$1"}:$1"
-}
-
-path_unshift () {
-    [ -d "$1" ] && PATH="$1:${PATH/"$1:"}"
-}
-
-# ----------------------------------------------------------------------
-# Paths
-# ----------------------------------------------------------------------
-
-# Homebrew
-path_unshift "$HOME/.homebrew/bin"
-
-# Heroku
-path_unshift "$HOME/.local/heroku/bin"
-
-# I like installing everything in ~/.local instead of /usr/local
-path_unshift "$HOME/.local/bin"
-
-# ----------------------------------------------------------------------
-# Bash completion
-# ----------------------------------------------------------------------
-
-# SSH hostname completion based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] &&
-complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
-
-# Load Homebrew bash-completion
-if command -v brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-    source $(brew --prefix)/etc/bash_completion
-fi
-
-# Load system-wide bash-completion
-for completion in "/etc/bash_completion" "/usr/local/etc/bash_completion"; do
-    if [ -f completion ] && ! shopt -oq posix; then
-        source completion
-    fi
-done
-
-# ----------------------------------------------------------------------
 # Editor and Pager
 # ----------------------------------------------------------------------
 
@@ -236,81 +167,13 @@ fi
 export PAGER="less -FiRS"
 
 # ----------------------------------------------------------------------
-# Go Environment
+# Shell configuration
 # ----------------------------------------------------------------------
 
-if [ -d "$HOME/.local/go" ]; then
-    export GOROOT="$HOME/.local/go"
-    path_push "$GOROOT/bin"
-fi
-
-if [ -d "$HOME/.go" ]; then
-    export GOPATH="$HOME/.go"
-    path_push "$GOPATH/bin"
-fi
-
-# ----------------------------------------------------------------------
-# Ruby Environment (rbenv)
-# ----------------------------------------------------------------------
-
-if [ -d "$HOME/.rbenv" ]; then
-    path_unshift "$HOME/.rbenv/bin"
-    eval "$(rbenv init -)"
-fi
-
-# ----------------------------------------------------------------------
-# Node Environment (nvm)
-# ----------------------------------------------------------------------
-
-if [ -d "$HOME/.nvm" ]; then
-    export NVM_DIR="$HOME/.nvm"
-    source $NVM_DIR/nvm.sh
-    [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-fi
-
-# ----------------------------------------------------------------------
-# Python Environment (pyenv)
-# ----------------------------------------------------------------------
-
-if [ -d "$HOME/.pyenv" ]; then
-
-    # Initialize pyenv
-    export PYENV_ROOT="$HOME/.pyenv"
-    path_unshift "$HOME/.pyenv/bin"
-    eval "$(pyenv init -)"
-
-    # Initialize virtualenvwrapper
-    if [ -e "$HOME/.pyenv/version" ]; then
-        python_version="$(cat $HOME/.pyenv/version)"
-        if [ -e "$PYENV_ROOT/versions/$python_version/bin/virtualenvwrapper.sh" ]; then
-            [ -d "$HOME/.virtualenvs" ] || mkdir -p $HOME/.virtualenvs
-            export WORKON_HOME="$HOME/.virtualenvs"
-            source $PYENV_ROOT/versions/$python_version/bin/virtualenvwrapper.sh
-            export VIRTUALENV_USE_DISTRIBUTE=true
-            export PIP_VIRTUALENV_BASE=$WORKON_HOME
-            export PIP_REQUIRE_VIRTUALENV=false
-            export PIP_RESPECT_VIRTUALENV=true
-            export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
-            export VIRTUAL_ENV_DISABLE_PROMPT=true
+if [ -d "$HOME/.profile.d" ]; then
+    for i in "$HOME"/.profile.d/*.sh; do
+        if [ -r $i ]; then
+            source $i
         fi
-        unset python_version
-    fi
-
-fi
-
-# ----------------------------------------------------------------------
-# MIT Scheme Environment
-# ----------------------------------------------------------------------
-
-if [ -d "$HOME/.local/lib/mit-scheme" ]; then
-    export MITSCHEME_LIBRARY_PATH="$HOME/.local/lib/mit-scheme"
-fi
-
-# ----------------------------------------------------------------------
-# Java Environment
-# ----------------------------------------------------------------------
-
-if [ -d "$HOME/.local/java" ]; then
-    export JAVA_HOME="$HOME/.local/java/Home"
-    path_unshift "$JAVA_HOME/bin"
+    done
 fi
