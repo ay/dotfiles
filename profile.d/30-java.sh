@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -d "$HOME/.local/java/Home" ]; then
-    export JAVA_HOME="$HOME/.local/java/Home"
+if [ -d "$HOME/.local/java" ]; then
+    export JAVA_HOME="$HOME/.local/java"
     path_unshift "$JAVA_HOME/bin"
 fi
