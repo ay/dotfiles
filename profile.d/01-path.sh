@@ -16,8 +16,5 @@ path_unshift () {
     [ -d "$1" ] && PATH=$(puniq "$1:$PATH")
 }
 
-# Homebrew
-path_unshift "$HOME/.homebrew/bin"
-
 # I like installing stuff I manage in ~/.local instead of /usr/local
 path_unshift "$HOME/.local/bin"
