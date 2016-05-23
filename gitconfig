@@ -33,3 +33,6 @@
 
 [rerere]
 	enabled = true
+
+[transfer]
+	fsckObjects = true
