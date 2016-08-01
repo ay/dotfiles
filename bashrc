@@ -125,7 +125,8 @@ fi
 # ----------------------------------------------------------------------
 
 _parse_git_dirty () {
-    [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+    local git_status="$(git status 2> /dev/null | tail -n1)"
+    [[ $git_status != *"working directory clean"* && $git_status != *"working tree clean"* ]] && echo "*"
 }
 
 _parse_git_branch () {
