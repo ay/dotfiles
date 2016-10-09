@@ -71,7 +71,6 @@ Plugin 'gmarik/Vundle.vim'
 " Language plugins
 Plugin 'fatih/vim-go'
 Plugin 'elzr/vim-json'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-markdown'
 
@@ -83,7 +82,6 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-rails'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'rking/ag.vim'
 
 call vundle#end()
 filetype plugin indent on
