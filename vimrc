@@ -119,7 +119,7 @@ nmap <Leader>b :CtrlPBuffer<CR>
 cmap w!! % !sudo tee > /dev/null %
 
 " Use powerline fonts (must be installed)
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 
 " Fixes side column background color for gitgutter
 highlight clear SignColumn
