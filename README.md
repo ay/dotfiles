@@ -8,7 +8,7 @@ Before installing you should have Vim, Git, and Bash installed:
 
 ```
 $ cd
-$ git clone https://github.com/alexyakoubian/dotfiles.git .dotfiles
+$ git clone https://github.com/ay/dotfiles.git .dotfiles
 $ cd .dotfiles
 $ ./install.sh
 ```
