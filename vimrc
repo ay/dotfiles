@@ -73,6 +73,7 @@ Plugin 'fatih/vim-go'
 Plugin 'elzr/vim-json'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-markdown'
+Plugin 'pangloss/vim-javascript'
 
 " Other plugins
 Plugin 'airblade/vim-gitgutter'
