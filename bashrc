@@ -165,7 +165,7 @@ if command -v vim > /dev/null ; then
     export VISUAL="vim"
 fi
 
-export PAGER="less -FiRS"
+export PAGER="less -FiRSX"
 
 # ----------------------------------------------------------------------
 # Shell configuration
